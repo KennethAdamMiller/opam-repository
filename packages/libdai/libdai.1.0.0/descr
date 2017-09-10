@@ -1,0 +1,7 @@
+libdai opam package wrapper
+
+libdai is a library for probability inference using factor graphs
+and belief propagation algorithms. It therefore represents rather
+burdensome computations that necessarily must run as expediently
+as possible, and naturally is written in c++. To get this into 
+ocaml, some swig was used to automatically generate wrappers. 
