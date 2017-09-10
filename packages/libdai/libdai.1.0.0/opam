@@ -1,0 +1,50 @@
+opam-version: "1.0"
+name: "libdai"
+version: "master"
+maintainer: "Kenneth Adam Miller <kennethadammiller@gmail.com>"
+authors: "Kenneth Adam Miller"
+homepage: "https://bitbucket.org/jorism/libdai.git"
+bug-reports: "https://bitbucket.org/jorism/libdai/issues?status=new&status=open"
+dev-repo: "git@bitbucket.org:jorism/libdai.git"
+license: "MIT"
+build: [
+#  [cp libdai/swig/*.ml libdai/swig/*.mli ]
+  ["make" "ocaml"] {os = "linux"}
+  ["make" "osxocaml"] {os = "darwin"}
+]
+
+install: [
+  ["ocamlfind" "remove" "libdai"]
+  ["make" "test"]
+  ["make" "install"]
+]
+
+remove: [
+  ["ocamlfind" "remove" "libdai"]
+  ["rm" "-rf" "%{prefix}%/share/libdai"]
+]
+
+depends: [
+]
+
+depexts: [
+    [["ubuntu"] [
+        "g++"
+        "make" 
+        "doxygen" 
+        "graphviz" 
+        "libboost-dev" 
+        "libboost-graph-dev"
+        "libboost-program-options-dev"
+        "libboost-test-dev"
+        "libgmp-dev" 
+        "cimg-dev"
+        "swig2.0"
+     ]]
+     [["osx" "macports"] [
+     ]]
+     [["osx" "homebrew"] [
+    ]]
+]
+
+available: [ocaml-version >= "4.02.3"]
