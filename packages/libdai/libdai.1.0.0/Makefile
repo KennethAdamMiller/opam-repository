@@ -21,10 +21,13 @@ osxocaml: libdai osxconf libdai/lib/libdai.a
 	make -C ocaml_swig 
 
 ocaml: libdai linuxconf libdai/lib/libdai.a
+	cp libdai/swig/*.ml ocaml_swig/src/
+	cp libdai/swig/*.mli ocaml_swig/src/
+	cp libdai/swig/*.c ocaml_swig/src/
 	make -C ocaml_swig
 
 test:
-	echo "test"
+	./ocaml_swig/test.native
 
 install:
 	cd ocaml_swig ; $(SETUP) -configure --bindir $(shell opam config var bin)
