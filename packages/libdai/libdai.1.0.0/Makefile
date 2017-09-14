@@ -1,5 +1,5 @@
 SETUP=LDFLAGS=-L/usr/local/lib LIBRARY_PATH=/opt/local/lib ocaml setup.ml
-libdai_caml=ocaml_swig
+libdai_caml=oasis
 
 libdai:
 	git clone https://bitbucket.org/kennethadammiller/libdai
@@ -14,25 +14,25 @@ libdai/lib/libdai.a: libdai
 	make -C libdai -j8
 	make -C libdai/swig dai_stub.c
 
-osxocaml: libdai osxconf libdai/lib/libdai.a
-	cp libdai/swig/*.ml ocaml_swig/src/
-	cp libdai/swig/*.mli ocaml_swig/src/
-	cp libdai/swig/*.c ocaml_swig/src/
-	make -C ocaml_swig 
+libdai_osx: libdai osxconf libdai/lib/libdai.a
+	cp libdai/swig/*.ml $(libdai_caml)/src/
+	cp libdai/swig/*.mli $(libdai_caml)/src/
+	cp libdai/swig/*.c $(libdai_caml)/src/
+	make -C oasis
 
-ocaml: libdai linuxconf libdai/lib/libdai.a
-	cp libdai/swig/*.ml ocaml_swig/src/
-	cp libdai/swig/*.mli ocaml_swig/src/
-	cp libdai/swig/*.c ocaml_swig/src/
-	make -C ocaml_swig
+libdai_linux: libdai linuxconf libdai/lib/libdai.a
+	cp libdai/swig/*.ml $(libdai_caml)/src/
+	cp libdai/swig/*.mli $(libdai_caml)/src/
+	cp libdai/swig/*.c $(libdai_caml)/src/
+	make -C oasis
 
 test:
-	./ocaml_swig/test.native
+	./$(libdai_caml)/test.native
 
 install:
-	cd ocaml_swig ; $(SETUP) -configure --bindir $(shell opam config var bin)
-	cd ocaml_swig ; $(SETUP) -install
+	cd $(libdai_caml) ; $(SETUP) -configure --bindir $(shell opam config var bin)
+	cd $(libdai_caml) ; $(SETUP) -install
 
 clean:
 	rm -rf libdai
-	make -C ocaml_swig clean
+	make -C $(libdai_caml) clean

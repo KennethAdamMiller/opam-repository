@@ -1,0 +1,6 @@
+**/setup.data
+**/_build
+**/*.native
+**/*.byte
+oasis/src/*.ml
+oasis/src/*.mli

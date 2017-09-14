@@ -9,8 +9,8 @@ dev-repo: "git@bitbucket.org:jorism/libdai.git"
 license: "MIT"
 build: [
 #  [cp libdai/swig/*.ml libdai/swig/*.mli ]
-  ["make" "ocaml"] {os = "linux"}
-  ["make" "osxocaml"] {os = "darwin"}
+  ["make" "libdai_linux"] {os = "linux"}
+  ["make" "libdai_osx"] {os = "darwin"}
 ]
 
 install: [
