@@ -1,21 +1,16 @@
-opam-version: "1.2"
-maintainer: "David Sheets <sheets@alum.mit.edu>"
+opam-version: "2.0"
+maintainer: "Kate <kit.ty.kate@disroot.org>"
 authors: ["The OpenSSL Project"]
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://www.openssl.org/"
 license: "Apache-1.0"
-build: [
-  ["pkg-config" "openssl"] {os != "freebsd" & os != "openbsd" & os != "netbsd"}
+depends: ["conf-libssl"]
+post-messages: [
+  "This package shouldn't be used. Please use conf-libssl.1 or conf-openssl.2 instead."
 ]
-depends: ["conf-pkg-config"]
-depexts: [
-  [["debian"] ["libssl-dev"]]
-  [["ubuntu"] ["libssl-dev"]]
-  [["centos"] ["openssl-devel"]]
-  [["oraclelinux"] ["openssl-devel"]]
-  [["fedora"] ["openssl-devel"]]
-  [["osx" "homebrew"] ["openssl"]]
-  [["alpine"] ["libressl-dev"]]
-  [["nixpkgs"] ["openssl"]]
-  [["archlinux"] ["openssl"]]
-  [["opensuse"] ["libopenssl-devel"]]
-]
+synopsis: "Virtual package relying on an OpenSSL library system installation (deprecated version)"
+description: """
+This package can only install if the OpenSSL library is installed on the system.
+This version of this metapackage is left here for compatibility purpose only.
+"""
+flags: conf
